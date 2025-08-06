@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cette balise va nous permet de modifier par la suite dans les prochains templates qu'on va créer  -->
+    {% block title %}
+      
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <nav>
+        <a href="{% url 'posts:home' %}">Accueil</a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'posts:create' %}">Ajouter un article</a>
+        {% endif %}
+    </nav>
+
+    <section id="blog">
+        {% block content %}
+
+        {% endblock %}
+    </section>
+</body>
+
+</html>
